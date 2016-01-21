@@ -1,3 +1,4 @@
 app:
-    resource: "@AppBundle/Controller/"
+    resource: "@LibrarianBundle/UI/"
     type:     annotation
+    prefix:   /

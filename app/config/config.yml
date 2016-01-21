@@ -37,11 +37,14 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    paths:
+      "%kernel.root_dir%/../src/LibrarianBundle/UI/User/Template": base
+      "%kernel.root_dir%/../src/LibrarianBundle/UI/User/Test/Template": user_test
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   pdo_pgsql
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -58,7 +61,20 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        auto_mapping: false
+        mappings:
+            article:
+                type: annotation
+                dir: "%kernel.root_dir%/../src/LibrarianBundle/Logic/Article/Entity"
+                prefix: FractalizeR\LibrarianBundle\Logic\Article\Entity
+                alias: Article
+                is_bundle: false
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/../src/LibrarianBundle/Migrations"
+    namespace: FractalizeR\LibrarianBundle\Migrations
+    table_name: migration_versions
+    name: Application Migrations
 
 # Swiftmailer Configuration
 swiftmailer:
