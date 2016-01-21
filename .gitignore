@@ -1,4 +1,8 @@
 /.idea/deployment.xml
+/.idea/dataSources.ids
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/webServers.xml
 /app/config/parameters.yml
 /build/
 /phpunit.xml
