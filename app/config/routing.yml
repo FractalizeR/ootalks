@@ -1,4 +1,4 @@
 app:
-    resource: "@LibrarianBundle/UI/"
+    resource: "@LibrarianBundle/UI"
     type:     annotation
     prefix:   /

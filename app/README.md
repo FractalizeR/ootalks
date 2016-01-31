@@ -1,0 +1,1 @@
+Configuration & Bootstrap folder for the application

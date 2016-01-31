@@ -37,9 +37,12 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+       - 'bootstrap_4_layout.html.twig'
     paths:
-      "%kernel.root_dir%/../src/LibrarianBundle/UI/User/Template": base
-      "%kernel.root_dir%/../src/LibrarianBundle/UI/User/Test/Template": user_test
+      "%kernel.root_dir%/../src/LibrarianBundle/UI/Template": base
+      "%kernel.root_dir%/../src/LibrarianBundle/UI/Domain/Article/Template": article
+      "%kernel.root_dir%/../src/LibrarianBundle/UI/Domain/Author/Template": author
 
 # Doctrine Configuration
 doctrine:
@@ -65,9 +68,15 @@ doctrine:
         mappings:
             article:
                 type: annotation
-                dir: "%kernel.root_dir%/../src/LibrarianBundle/Logic/Article/Entity"
-                prefix: FractalizeR\LibrarianBundle\Logic\Article\Entity
+                dir: "%kernel.root_dir%/../src/LibrarianBundle/Logic/Domain/Article/Entity"
+                prefix: FractalizeR\LibrarianBundle\Logic\Domain\Article\Entity
                 alias: Article
+                is_bundle: false
+            author:
+                type: annotation
+                dir: "%kernel.root_dir%/../src/LibrarianBundle/Logic/Domain/Author/Entity"
+                prefix: FractalizeR\LibrarianBundle\Logic\Domain\Author\Entity
+                alias: Author
                 is_bundle: false
 
 doctrine_migrations:

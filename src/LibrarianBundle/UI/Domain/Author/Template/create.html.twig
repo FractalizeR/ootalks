@@ -1,0 +1,18 @@
+{% extends '@base/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Create an author</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.www) }}
+        {{ form_row(form.shortBio) }}
+        {{ form_row(form.longBio) }}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

@@ -4,7 +4,9 @@
     <option name="pluginEnabled" value="true" />
     <option name="twigNamespaces">
       <list>
-        <twig_namespace enabled="false" namespace="base" namespaceType="ADD_PATH" path="src/LibrarianBundle/UI/User/Template" />
+        <twig_namespace custom="true" namespace="article" namespaceType="ADD_PATH" path="src/LibrarianBundle/UI/Domain/Article/Template" />
+        <twig_namespace custom="true" namespace="author" namespaceType="ADD_PATH" path="src/LibrarianBundle/UI/Domain/Author/Template" />
+        <twig_namespace custom="true" namespace="base" namespaceType="ADD_PATH" path="src/LibrarianBundle/UI/Template" />
       </list>
     </option>
   </component>

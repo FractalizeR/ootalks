@@ -4,6 +4,28 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    ui.author_controller:
+        class: FractalizeR\LibrarianBundle\UI\Domain\Author\Controller\AuthorController
+        arguments:
+          - '@logic.author_repository'
+        calls:
+          - [setContainer, ['@service_container']]
+
+    ui.article_controller:
+        class: FractalizeR\LibrarianBundle\UI\Domain\Article\Controller\ArticleController
+        arguments:
+          - '@logic.article_repository'
+        calls:
+          - [setContainer, ['@service_container']]
+
+    logic.article_repository:
+        class: FractalizeR\LibrarianBundle\Logic\Domain\Article\Repository\ArticleRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments:
+            - FractalizeR\LibrarianBundle\Logic\Domain\Article\Entity\Article
+
+    logic.author_repository:
+        class: FractalizeR\LibrarianBundle\Logic\Domain\Author\Repository\AuthorRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments:
+            - FractalizeR\LibrarianBundle\Logic\Domain\Author\Entity\Author

@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
-use FractalizeR\LibrarianBundle\Logic\Article\Entity\Article;
+use FractalizeR\LibrarianBundle\Logic\Domain\Article\Entity\Article;
 
 /**
  * Class LoadArticleData

@@ -1,6 +1,6 @@
 <?php
 
-namespace FractalizeR\LibrarianBundle\LibrarianBundle\Logic\Article\Exception;
+namespace FractalizeR\LibrarianBundle\Logic\Infrastructure\MarkupCompiler;
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
  *
  * @package FractalizeR\LibrarianBundle\LibrarianBundle\Logic\Article\Exception
  */
-class ArticleMarkdownException extends Exception
+class MarkupCompilerException extends Exception
 {
 
 }

@@ -1,0 +1,14 @@
+{% extends '@base/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Edit an article</h1>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.contents) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

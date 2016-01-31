@@ -1,0 +1,14 @@
+{% extends '@base/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+        <blockquote class="blockquote">
+            <p>{{ author.shortBio }}</p>
+        </blockquote>
+        <div>
+            {{ author.longBioCompiled | raw }}
+        </div>
+    </div>
+{% endblock %}
+

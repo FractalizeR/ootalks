@@ -2,8 +2,9 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="FractalizeR\LibrarianBundle" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="FractalizeR" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/var/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -17,5 +18,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
