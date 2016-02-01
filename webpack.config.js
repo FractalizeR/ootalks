@@ -1,16 +1,29 @@
+var webpack = require ( 'webpack' );
+
 module.exports = {
     debug: true,
-    externals: { jquery: "jQuery" },
+    cache: true,
 
-    entry: './res/js/entry.ts',
+    externals: {
+        jquery: "jQuery"
+    },
+
+    entry: "./res/js",
     output: {
         path: __dirname + "/web",
         filename: 'js/app.js'
     },
     module: {
         loaders: [
-            // note that babel-loader is not required
-            { test: /\.tsx?$/, loader: 'ts-loader' }
+            {
+                test: /.js$/,
+                loader: 'babel?presets[]=es2015&cacheDirectory=true',
+                exclude: /(node_modules|bower_components)/
+            }
         ]
-    }
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin ( { "screw-ie8": true, "compress": true } )
+    ],
+    devtool: 'source-map'
 };
