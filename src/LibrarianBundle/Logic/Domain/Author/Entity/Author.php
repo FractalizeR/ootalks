@@ -5,25 +5,26 @@ namespace FractalizeR\LibrarianBundle\Logic\Domain\Author\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FractalizeR\LibrarianBundle\Logic\Infrastructure\MarkupCompiler\MarkupCompilerFactory;
 use FractalizeR\LibrarianBundle\Logic\Util\PropertyTrait;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="FractalizeR\LibrarianBundle\Logic\Domain\Author\Repository\AuthorRepository")
- * @ORM\Table(schema="article")
+ * @ORM\Table(schema="article", indexes={@ORM\Index(columns={"full_name"})})
  * @package FractalizeR\Librarian\Logic\Article\Model
- * @property-read int    $id
- * @property string      $firstName
- * @property string      $lastName
- * @property-read string $title
- * @property string      $shortBio
- * @property string      $longBio
- * @property string      $longBioCompiled
+ * @property-read int $id
+ * @property string   $www
+ * @property string   $fullName
+ * @property string   $shortBio
+ * @property string   $longBio
+ * @property string   $longBioCompiled
  */
 class Author
 {
     use PropertyTrait;
 
     /**
+     * @Groups({"list", "item"})
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -32,42 +33,40 @@ class Author
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @Groups({"list", "item"})
+     * @ORM\Column(type="string", options={"comment": "The full name of the author"})
      * @Assert\Length(min="2", max="200")
      * @var string
      */
-    protected $firstName;
+    protected $fullName;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\Length(min="2", max="200")
-     * @var string
-     */
-    protected $lastName;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list", "item"})
+     * @ORM\Column(type="text", nullable=true, options={"comment":"Personal website of the author"})
      * @Assert\Length(min="12", max="500")
      * @var string
      */
     protected $www;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"list", "item"})
+     * @ORM\Column(type="text", nullable=true, options={"comment": "Plaintext one-sentence bio of the author"})
      * @Assert\Length(min="12", max="500")
      * @var string
      */
     protected $shortBio;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"item"})
+     * @ORM\Column(type="text", nullable=true, options={"comment": "Rich and long author bio"})
      * @Assert\Length(min="200")
      * @var string
      */
     protected $longBio;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @Groups({"item"})
+     * @ORM\Column(type="text", nullable=true, options={"comment": "Compiled markup of the long author's bio"})
      * @Assert\Length(min="200")
      * @var string
      */
@@ -76,74 +75,28 @@ class Author
     /**
      * Author constructor.
      *
-     * @param string $firstName
-     * @param string $lastName
+     * @param $fullName
      */
-    public function __construct($firstName, $lastName)
+    public function __construct($fullName)
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->fullName = $fullName;
     }
 
     /**
      * @return string
      */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string $firstName
-     *
-     * @return Author
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     *
-     * @return Author
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getTitle()
-    {
-        return $this->firstName.' '.$this->lastName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWww()
+    protected function getWww()
     {
         return $this->www;
     }
 
     /**
      * @param string $www
+
      *
-     * @return Author
+*@return Author
      */
-    public function setWww($www)
+    protected function setWww($www)
     {
         $this->www = $www;
 
@@ -153,7 +106,23 @@ class Author
     /**
      * @return string
      */
-    public function getShortBio()
+    protected function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param string $fullName
+     */
+    protected function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getShortBio()
     {
         return $this->shortBio;
     }
@@ -163,7 +132,7 @@ class Author
      *
      * @return Author
      */
-    public function setShortBio($shortBio)
+    protected function setShortBio($shortBio)
     {
         $this->shortBio = $shortBio;
 
@@ -173,7 +142,7 @@ class Author
     /**
      * @return string
      */
-    public function getLongBio()
+    protected function getLongBio()
     {
         return $this->longBio;
     }
@@ -183,7 +152,7 @@ class Author
      *
      * @return Author
      */
-    public function setLongBio($longBio)
+    protected function setLongBio($longBio)
     {
         $compiler = MarkupCompilerFactory::getCompiler()->setMarkup($longBio);
         $contentsHtml = $compiler->getContentsHtml();
@@ -197,7 +166,7 @@ class Author
     /**
      * @return string
      */
-    public function getLongBioCompiled()
+    protected function getLongBioCompiled()
     {
         return $this->longBioCompiled;
     }

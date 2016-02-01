@@ -7,7 +7,6 @@ use FractalizeR\LibrarianBundle\Logic\Domain\Author\Repository\AuthorRepository;
 use FractalizeR\LibrarianBundle\UI\Domain\Author\Form\AuthorForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -17,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @package FractalizeR\LibrarianBundle\UI\Domain\Author\Controller
  */
-class AuthorController extends Controller implements ContainerAwareInterface
+class AuthorController extends Controller
 {
     /**
      * @var AuthorRepository
@@ -36,12 +35,11 @@ class AuthorController extends Controller implements ContainerAwareInterface
 
     /**
      * @Route("/authors/{id}-{title}", requirements={"id" = "\d+"}, name="author_display")
-     * @param int     $id
-     * @param Request $request
+     * @param int $id
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+*@return \Symfony\Component\HttpFoundation\Response
      */
-    public function displayAction(int $id, Request $request)
+    public function displayAction(int $id)
     {
         $author = $this->getAuthorById($id);
 

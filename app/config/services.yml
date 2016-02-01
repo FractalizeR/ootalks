@@ -11,6 +11,14 @@ services:
         calls:
           - [setContainer, ['@service_container']]
 
+    ui.author_controller.ajax:
+        class: FractalizeR\LibrarianBundle\UI\Domain\Author\Controller\AuthorAjaxController
+        arguments:
+          - '@logic.author_repository'
+          - '@serializer'
+        calls:
+          - [setContainer, ['@service_container']]
+
     ui.article_controller:
         class: FractalizeR\LibrarianBundle\UI\Domain\Article\Controller\ArticleController
         arguments:
