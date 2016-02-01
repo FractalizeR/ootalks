@@ -21,5 +21,6 @@
 /web/bundles/
 /web/js
 /web/css
+/web/fonts
 /node_modules
 /typings
